@@ -1,0 +1,721 @@
+{
+	"info": {
+		"_postman_id": "ba0e1ee8-0494-4aae-826c-c86b755413d9",
+		"name": "Products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28839311"
+	},
+	"item": [
+		{
+			"name": "Get All Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_UrlLive}}/productsList",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"productsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post To All Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This request method is not supported.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{Base_UrlLive}}/productsList",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"productsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Brands",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_UrlLive}}/brandsList",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"brandsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put To All Brands",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{Base_UrlLive}}/brandsList",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"brandsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post To Search Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Tshirts\");\r",
+							"});\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "search_product",
+						"value": "Blue Top",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "search_product",
+							"value": "tshirt",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base_UrlLive}}/searchProduct",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"searchProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post To search Product without search_Product Param.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{Base_UrlLive}}/searchProduct",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"searchProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post to verify login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"User exists!\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "\"Ahmed@gmail.com\"",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "\"111\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base_UrlLive}}/verifyLogin",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"verifyLogin"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "Rewan@gmail.com",
+							"disabled": true
+						},
+						{
+							"key": "Password",
+							"value": "12345",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login without email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Bad request, email or password parameter is missing in POST request.\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "password",
+							"value": "\"123\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base_UrlLive}}/verifyLogin",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete To Verify login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This request method is not supported.\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Base_UrlLive}}/verifyLogin",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post with Invalid Credential",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"User not found!\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "\"Rewan@gmail.com\"",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "\"123\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base_UrlLive}}/verifyLogin",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"User created!\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "\"Ahmed\"",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "\"Ahmed1@gmail.com\"",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "\"111\"",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "\"Mr\"",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "\"6\"",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "\"1\"",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "\"1995\"",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "\"Ahmed\"",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "\"Mohamed\"",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "\"XY\"",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "\"1st\"",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "\"2st\"",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "\"cairo\"",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "\"4154\"",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "\"Egypt\"",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "\"Cairo\"",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "\"01115448888\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base_UrlLive}}/createAccount",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"createAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Account deleted!\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "\"Ahmed1@gmail.com\"",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "\"111\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base_UrlLive}}/deleteAccount",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"deleteAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"User updated!\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "\"Ahmed\"",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "\"Ahmed1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "\"111\"",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "\"Mr\"",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "\"10\"",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "\"6\"",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "\"2000\"",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "\"Mahmoud\"",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "\"Ali\"",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "\"XY\"",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "\"22\"",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "\"kuwait\"",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "\"kuwait\"",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "\"01225556666\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base_UrlLive}}/updateAccount",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"updateAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "\"Ahmed1@gmail.com\"",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{Base_UrlLive}}/getUserDetailByEmail",
+					"host": [
+						"{{Base_UrlLive}}"
+					],
+					"path": [
+						"getUserDetailByEmail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
